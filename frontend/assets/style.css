@@ -1,0 +1,31 @@
+/* quick MVP layout */
+.topbar { display:flex; gap:12px; align-items:center; padding:10px; border-bottom:1px solid #333; }
+.topbar-left { flex:0 0 auto; }
+.topbar-mid { flex:1; opacity:0.8; }
+.topbar-right { flex:0 0 auto; }
+.error { color:#ff6666; margin-left:12px; }
+
+.login-wrap { max-width:420px; margin:40px auto; padding:16px; border:1px solid #333; border-radius:8px; }
+.form { display:flex; flex-direction:column; gap:8px; }
+.row { display:flex; gap:8px; margin-top:8px; }
+
+.layout { display:flex; height: calc(100vh - 52px); }
+.sidebar { width:280px; border-right:1px solid #333; display:flex; flex-direction:column; }
+.sidebar-top { padding:10px; border-bottom:1px solid #333; }
+.convs { overflow:auto; padding:8px; display:flex; flex-direction:column; gap:6px; }
+.conv { padding:8px; border:1px solid #333; border-radius:6px; cursor:pointer; }
+.conv.active { outline:2px solid #666; }
+
+.main { flex:1; display:flex; flex-direction:column; }
+.msgs { flex:1; overflow:auto; padding:12px; display:flex; flex-direction:column; gap:10px; }
+.msg { padding:10px; border:1px solid #333; border-radius:8px; }
+.msg.user { opacity:0.95; }
+.msg.assistant { opacity:0.9; }
+.msg-role { font-size:12px; opacity:0.7; margin-bottom:6px; }
+.msg-content { white-space:pre-wrap; }
+
+.composer-row { display:flex; gap:10px; padding:10px; border-top:1px solid #333; }
+.composer { flex:1; min-height:56px; }
+
+.btn { padding:8px 10px; border:1px solid #333; background:transparent; color:inherit; border-radius:6px; cursor:pointer; }
+.btn.primary { border-color:#666; }

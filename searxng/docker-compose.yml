@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  # 1. The Search Engine
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+    ports:
+      - "8081:8080" # Host Port : Container Port
+    volumes:
+      - ./searxng:/etc/searxng:rw # Maps config files to a local folder
+    environment:
+      - BASE_URL=http://localhost:8081/
+      - INSTANCE_NAME=HomeAssistantSearch
+      # Important: Generates a secret key for the instance securely
+      - SEARXNG_SECRET=changeme12345generatedsecret
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    depends_on:
+      - redis
+
+  # 2. Redis (Required helper for SearxNG)
+  redis:
+    image: redis:alpine
+    container_name: searxng-redis
+    command: redis-server --save "" --appendonly "no" # Runs in cache mode (no persistence)
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"

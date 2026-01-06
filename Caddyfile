@@ -1,15 +1,10 @@
-# Caddy reverse proxy with local HTTPS for your home network.
-# Uses the env var APP_DOMAIN from your environment (PowerShell: $env:APP_DOMAIN).
-#
-# Run Caddy with:
-#   caddy run --config Caddyfile
-#
-# IMPORTANT:
-# - Install & trust Caddy's local CA on your devices (see README).
-# - Backend stays HTTP on 127.0.0.1:${APP_PORT}
-
-{$APP_DOMAIN} {
-	encode gzip
+ai-assistant.lan, BENJI-PC.local, 192.168.188.163 {
 	tls internal
-	reverse_proxy 127.0.0.1:{$APP_PORT}
+	reverse_proxy 127.0.0.1:8000
+	encode gzip
+
+	log {
+		output file logs/caddy-access.log
+		format console
+	}
 }
